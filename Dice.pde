@@ -150,9 +150,10 @@ public class Dice {
    if(keyCode == UP){
    redraw();
    }
-  */
+  
    
  }
+ */
  void mousePressed(){
   redraw();
    
