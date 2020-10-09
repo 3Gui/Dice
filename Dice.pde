@@ -1,5 +1,7 @@
+
 void setup(){
  size(1000,1000);
+ frameRate(10);
 }
 
 public class Dice {
@@ -88,22 +90,7 @@ public class Dice {
 
 
  void draw(){
-   //Dice tuf = new Dice(50,50);
-   //tuf.show();
-   
-   
- }
- /*
- for (int y = 10; y<= 950; y+=55){
-     for (int x = 10; x<= 950; x+=55){
-       Dice tuf = new Dice(x,y,50);
-       tuf.show();
-     }
-   
-   }
- */
- void mousePressed(){
-   background(155);
+   background(200);
    int dieTotal = 0;
    int numTotal = 0;
    int[] col = new int[3];
@@ -120,7 +107,6 @@ public class Dice {
      for (int x = 75+xChange; x<= 870-xChange; x+=22){
        Dice tuf = new Dice(x,y,20,col);
        tuf.show();
-       
        dieTotal++;
        numTotal += tuf.getdNum();;
      } 
@@ -131,7 +117,7 @@ public class Dice {
      if (dswitch){
       xChange+=(30-d);
       d+=-.1;
-     }else{
+     } else{
      xChange-=(30-d);
      d+=1.5;
      }
@@ -145,5 +131,28 @@ public class Dice {
    text("Total Dice = " + dieTotal, 700,900);
    text("Sum of Dice = " + numTotal, 100,900);
    System.out.println((float)numTotal/dieTotal);
+   
+   noLoop();
+    
+   
+   
+ }
+ /*
+ for (int y = 10; y<= 950; y+=55){
+     for (int x = 10; x<= 950; x+=55){
+       Dice tuf = new Dice(x,y,50);
+       tuf.show();
+     }
+   
+   }
+ */
+ void keyPressed(){
+   if(keyCode == UP){
+   redraw();
+   }
+   
+ }
+ void mousePressed(){
+  redraw();
    
  }
