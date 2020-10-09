@@ -1,5 +1,5 @@
 void setup(){
- size(1920,1080);
+ size(1000,1000);
 }
 
 public class Dice {
@@ -7,11 +7,13 @@ public class Dice {
   private int dY;
   private int diceNum =(int) (Math.random()*6 +1);
   private int dSize;
+  private int[] dColor = new int[3];
   
-  Dice(int x, int y, int size){
+  Dice(int x, int y, int size,int[] col){
    dX=x;
    dY=y;
    dSize= size;
+   dColor = col;
   }
   
   void one(){
@@ -57,7 +59,7 @@ public class Dice {
     return diceNum;
   }
   void show(){
-    fill(255);
+    fill(dColor[0],dColor[1],dColor[2]);
     rect(dX,dY,dSize,dSize,dSize/5); 
     if (diceNum==1){
       one();
@@ -101,16 +103,47 @@ public class Dice {
    }
  */
  void mousePressed(){
+   background(155);
    int dieTotal = 0;
    int numTotal = 0;
-   for (int y = 5; y<= 995; y+=25){
-     for (int x = 5; x<= 995; x+=25){
-       Dice tuf = new Dice(x,y,20);
+   int[] col = new int[3];
+   col[0] = (int)(Math.random()*155+70);
+   col[1] = (int)(Math.random()*155+85);
+   col[2] = (int)(Math.random()*155+100);
+   int rChange = (255 - col[0])/50;
+   int gChange = (255 - col[1])/40;
+   int bChange = (255 - col[2])/20;
+   boolean dswitch = false;
+   double d = 0.5;
+   int xChange=390;
+   for (int y = 25; y<= 1000; y+=22){
+     for (int x = 75+xChange; x<= 870-xChange; x+=22){
+       Dice tuf = new Dice(x,y,20,col);
        tuf.show();
+       
        dieTotal++;
        numTotal += tuf.getdNum();;
      } 
+     if (xChange <=0){
+       dswitch  = true;
+       d = 0.3;
+     }
+     if (dswitch){
+      xChange+=(30-d);
+      d+=-.1;
+     }else{
+     xChange-=(30-d);
+     d+=1.5;
+     }
+     col[0] += rChange;
+     col[1] += gChange;
+     col[2] += bChange;
    }
-   System.out.println(dieTotal);
-   System.out.println(numTotal);
+   dswitch = false;
+   fill(50,100,175);
+   textSize(20);
+   text("Total Dice = " + dieTotal, 700,900);
+   text("Sum of Dice = " + numTotal, 100,900);
+   System.out.println((float)numTotal/dieTotal);
+   
  }
