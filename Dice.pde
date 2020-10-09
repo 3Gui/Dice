@@ -145,11 +145,12 @@ public class Dice {
      }
    
    }
- */
+
  void keyPressed(){
    if(keyCode == UP){
    redraw();
    }
+    */
    
  }
  void mousePressed(){
